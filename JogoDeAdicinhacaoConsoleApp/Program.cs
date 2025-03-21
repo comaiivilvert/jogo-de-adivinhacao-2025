@@ -6,8 +6,10 @@
         //Versão 4: Criar múltiplas tentativas
         static void Main(string[] args)
         {
+           
             while(true)
             {
+                Console.Clear();
                 Console.WriteLine("----------------------");
                 Console.WriteLine("Jogo de Adivinhação");
                 Console.WriteLine("----------------------");
@@ -52,37 +54,36 @@
                         Console.WriteLine("----------------------");
                         Console.WriteLine("Parabéns, você acertou!");
                         Console.WriteLine("----------------------");
+                        Console.ReadLine();
                         break;
                     }
-                    if (tentativa == totalDeTentativas)
+
+                    else if (tentativa == totalDeTentativas)
                     {
                         Console.WriteLine("----------------------------------------");
                         Console.WriteLine($"Que pena! Você usou todas as tentativas. O número era {numeroSecreto}.");
                         Console.WriteLine("----------------------------------------");
+                        Console.ReadLine();
                         break;
                     }
+
                     else if (numeroDigitado > numeroSecreto)
                     {
                         Console.WriteLine("----------------------------------------------------------------");
                         Console.WriteLine("O número digitado é maior que o numero secreto, tente novamente.");
                         Console.WriteLine("----------------------------------------------------------------");
                     }
-                    else
+                    else if (numeroDigitado < numeroSecreto)
                     {
                         Console.WriteLine("----------------------------------------------------------------");
                         Console.WriteLine("O número digitado é menor que o numero secreto, tente novamente.");
                         Console.WriteLine("----------------------------------------------------------------");
                     }
                     
-                    
-                    Console.Write("Deseja continuar? (S/N): ");
-                    string opcaoContinuar = Console.ReadLine().ToUpper();
 
-                    if (opcaoContinuar != "S")
-                    break;
 
                     Console.ReadLine();
-                }
+                } 
             }
         }
     }
