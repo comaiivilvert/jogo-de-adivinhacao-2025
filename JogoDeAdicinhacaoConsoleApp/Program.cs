@@ -6,9 +6,17 @@
         //Versão 4: Criar múltiplas tentativas
         static void Main(string[] args)
         {
-           
-            while(true)
+            
+
+            
+            while (true)
+
+            
             {
+                string[] chutesPassados = new string[10];
+                int contadorChutes = 0;
+                int pontosTotais = 1000;
+
                 Console.Clear();
                 Console.WriteLine("----------------------");
                 Console.WriteLine("Jogo de Adivinhação");
@@ -24,7 +32,6 @@
 
                 Console.Write("Digita sua escolha: ");
                 string escolhaDeDificuldade = Console.ReadLine();
-
                 int totalDeTentativas = 0;
 
                 if (escolhaDeDificuldade == "1")
@@ -36,55 +43,115 @@
 
                 //escolha numero aleatorio
                 Random geradorDeNumeros = new Random();
-
                 int numeroSecreto = geradorDeNumeros.Next(1, 21);
 
-
+                
                 //logica do jogo
                 for (int tentativa = 1; tentativa <= totalDeTentativas; tentativa++)
                 {
+                                        
                     Console.Clear();
                     Console.WriteLine("-------------------------------------");
                     Console.WriteLine($"Tentativa {tentativa} de {totalDeTentativas}.");
                     Console.Write("Digite um numero (de 1 a 20) para chutar:");
-                    int numeroDigitado = Convert.ToInt32(Console.ReadLine());
+                    int numeroDigitado = Convert.ToInt32(Console.ReadLine());                    
+                    
+                    for (int i = 0; i < totalDeTentativas; i++)
+                    {
+                        if (chutesPassados[i] == null)
+                            break;
+
+                        else if (numeroDigitado == Convert.ToInt32(chutesPassados[i]))
+                        {
+                            while (numeroDigitado == Convert.ToInt32(chutesPassados[i]))
+                            {
+                                Console.WriteLine("Numero já digitado.");
+                                Console.Write("Digite novamente um número:");
+                                numeroDigitado = Convert.ToInt32(Console.ReadLine());
+                            }
+                            
+                        }
+                    }
+                    chutesPassados[contadorChutes] = Convert.ToString(numeroDigitado);
+
 
                     if (numeroDigitado == numeroSecreto)
                     {
+
+                        for (int i=0; i<totalDeTentativas; i++)
+                        {
+                            if (chutesPassados[i] != null)
+                            Console.WriteLine("Numeros já digitados:" + chutesPassados[i]);
+                        }
+                        
                         Console.WriteLine("----------------------");
                         Console.WriteLine("Parabéns, você acertou!");
                         Console.WriteLine("----------------------");
+                        int pontos = numeroDigitado - numeroSecreto / 2;
+                        pontosTotais = pontosTotais - pontos;
+                        Console.WriteLine("Sua pontuação final é: " + pontosTotais);
                         Console.ReadLine();
+                        
                         break;
                     }
 
                     else if (tentativa == totalDeTentativas)
                     {
+
+
+                        for (int i = 0; i < totalDeTentativas; i++)
+                        {
+                            if (chutesPassados[i] != null)
+                            Console.WriteLine("Numeros já digitados:" + chutesPassados[i]);
+                        }
+                        
                         Console.WriteLine("----------------------------------------");
                         Console.WriteLine($"Que pena! Você usou todas as tentativas. O número era {numeroSecreto}.");
                         Console.WriteLine("----------------------------------------");
+                        int pontos = numeroDigitado - numeroSecreto / 2;
+                        pontosTotais = pontosTotais - pontos;
+                        Console.WriteLine("Sua pontuação final é: " + pontosTotais);
                         Console.ReadLine();
                         break;
                     }
 
                     else if (numeroDigitado > numeroSecreto)
                     {
+                        for (int i = 0; i < totalDeTentativas; i++)
+                        {
+                            if (chutesPassados[i] != null)
+                            Console.WriteLine("Numeros já digitados:" + chutesPassados[i]);
+                        }
                         Console.WriteLine("----------------------------------------------------------------");
                         Console.WriteLine("O número digitado é maior que o numero secreto, tente novamente.");
                         Console.WriteLine("----------------------------------------------------------------");
+                        int pontos = numeroDigitado - numeroSecreto / 2;
+                        pontosTotais = pontosTotais - pontos;
+                        Console.WriteLine("Sua pontuação é: " + pontosTotais);
                     }
                     else if (numeroDigitado < numeroSecreto)
                     {
+                        for (int i = 0; i < totalDeTentativas; i++)
+                        {
+                            if (chutesPassados[i] != null)
+                            Console.WriteLine("Numeros já digitados:" + chutesPassados[i]);
+                        }
                         Console.WriteLine("----------------------------------------------------------------");
                         Console.WriteLine("O número digitado é menor que o numero secreto, tente novamente.");
                         Console.WriteLine("----------------------------------------------------------------");
+                        int pontos = numeroDigitado - numeroSecreto / 2;
+                        pontosTotais = pontosTotais - pontos;
+                        Console.WriteLine("Sua pontuação é: " + pontosTotais);
                     }
-                    
+                    contadorChutes++;
 
 
                     Console.ReadLine();
-                } 
+                   
+                }
+               
             }
+            
         }
     }
 }
