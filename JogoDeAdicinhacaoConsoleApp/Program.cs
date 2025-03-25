@@ -87,9 +87,7 @@
                         Console.WriteLine("----------------------");
                         Console.WriteLine("Parabéns, você acertou!");
                         Console.WriteLine("----------------------");
-                        int pontos = numeroDigitado - numeroSecreto / 2;
-                        pontosTotais = pontosTotais - pontos;
-                        Console.WriteLine("Sua pontuação final é: " + pontosTotais);
+                        Console.WriteLine("Sua pontuação final é: " + Math.Abs(pontosTotais));
                         Console.ReadLine();
                         
                         break;
@@ -108,9 +106,7 @@
                         Console.WriteLine("----------------------------------------");
                         Console.WriteLine($"Que pena! Você usou todas as tentativas. O número era {numeroSecreto}.");
                         Console.WriteLine("----------------------------------------");
-                        int pontos = numeroDigitado - numeroSecreto / 2;
-                        pontosTotais = pontosTotais - pontos;
-                        Console.WriteLine("Sua pontuação final é: " + pontosTotais);
+                        Console.WriteLine("Sua pontuação final é: " + Math.Abs(pontosTotais));
                         Console.ReadLine();
                         break;
                     }
@@ -126,8 +122,8 @@
                         Console.WriteLine("O número digitado é maior que o numero secreto, tente novamente.");
                         Console.WriteLine("----------------------------------------------------------------");
                         int pontos = numeroDigitado - numeroSecreto / 2;
-                        pontosTotais = pontosTotais - pontos;
-                        Console.WriteLine("Sua pontuação é: " + pontosTotais);
+                        pontosTotais = pontosTotais - Math.Abs(pontos);
+                        Console.WriteLine("Sua pontuação é: " + Math.Abs(pontosTotais));
                     }
                     else if (numeroDigitado < numeroSecreto)
                     {
@@ -140,8 +136,8 @@
                         Console.WriteLine("O número digitado é menor que o numero secreto, tente novamente.");
                         Console.WriteLine("----------------------------------------------------------------");
                         int pontos = numeroDigitado - numeroSecreto / 2;
-                        pontosTotais = pontosTotais - pontos;
-                        Console.WriteLine("Sua pontuação é: " + pontosTotais);
+                        pontosTotais = pontosTotais - Math.Abs(pontos);
+                        Console.WriteLine("Sua pontuação é: " + Math.Abs(pontosTotais));
                     }
                     contadorChutes++;
 
