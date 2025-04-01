@@ -28,22 +28,24 @@ namespace JogoDeAdicinhacaoConsoleApp
                 //logica do jogo
                 for (int tentativa = 1; tentativa <= totalDeTentativas; tentativa++)
                 {
-                    
 
-                    Console.Clear();
-                    Console.WriteLine("-------------------------------------");
-                    Console.WriteLine($"Tentativa {tentativa} de {totalDeTentativas}.");
-                    Console.Write("Digite um numero (de 1 a 20) para chutar:");
-                    int numeroDigitado = Convert.ToInt32(Console.ReadLine());
+                    int numeroDigitado = ChuteDoUsuario(tentativa, totalDeTentativas);
+
 
                     ValidaSeNumeroJaDigitado(totalDeTentativas, chutesPassados, numeroDigitado, contadorChutes);
+                    
                     if (ValidaSeNumeroEhVencedor(numeroDigitado, numeroSecreto, totalDeTentativas, chutesPassados,ref pontosTotais))
                         break;
+                    
                     if (ValidaSeEsgotouTentativas(tentativa, totalDeTentativas, chutesPassados,ref pontosTotais, numeroSecreto))
                         break;
+                    
                     ValidaSeNumeroEhMaior(numeroDigitado, numeroSecreto, totalDeTentativas, chutesPassados, ref pontosTotais);
+                    
                     ValidaSenumeroEhMenor(numeroDigitado, numeroSecreto, totalDeTentativas, chutesPassados, ref pontosTotais);
+                    
                     contadorChutes++;
+                    
                     Console.ReadLine();
 
                 }
@@ -191,6 +193,17 @@ namespace JogoDeAdicinhacaoConsoleApp
                 Console.WriteLine("Sua pontuação é: " + Math.Abs(pontosTotais));
             }
             return true;
+        }
+
+
+        static int ChuteDoUsuario (int tentativa, int totalDeTentativas)
+        {
+            Console.Clear();
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine($"Tentativa {tentativa} de {totalDeTentativas}.");
+            Console.Write("Digite um numero (de 1 a 20) para chutar:");
+            int numeroDigitado = Convert.ToInt32(Console.ReadLine());
+            return numeroDigitado;
         }
 
     }
